@@ -499,17 +499,18 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+<!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Artic<span>Plug</span></a>
+                <a href="#" class="logo">Artic<span>Plug</span></a>
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="how-to-buy.html" class="active">How to Buy</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="how to buy 2.html">Payment Process</a></li>
+                        <li><a href="testimonials.html">Reviews</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="icons">
@@ -608,56 +609,44 @@
         </div>
     </section>
 
-    <!-- Footer -->
+     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="how-to-buy.html">How to Buy</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
                     <h3>Shop</h3>
-                    <ul class="footer-links">
+                    <ul>
                         <li><a href="#">Canada Goose</a></li>
                         <li><a href="#">Moose Knuckles</a></li>
                         <li><a href="#">Moncler</a></li>
-                        <li><a href="#">Sale</a></li>
                     </ul>
                 </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                </div>
+                <div class="footer-column newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
             <div class="copyright">
                 <p>&copy; 2023 ArticPlug. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        // FAQ accordion functionality
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('.faq-icon');
-                
-                answer.classList.toggle('active');
-                icon.classList.toggle('active');
-            });
-        });
-
-        // Payment button functionality
-        const paymentBtns = document.querySelectorAll('.payment-btn');
-        
-        paymentBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('This is a demo. In a real website, this would redirect to the payment processor.');
-            });
-        });
-    </script>
 </body>
+
 </html>
+
