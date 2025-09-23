@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | ArticPlug</title>
+    <meta name="description" content="Read customer reviews for premium winter puffers from ArticPlug">
+    <meta name="author" content="ArticPlug">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #4a90e2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #4a90e2;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4a90e2;
+        }
+        
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .icons a {
+            margin-left: 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23e0e0e0"/><circle cx="50" cy="30" r="1.5" fill="%23e0e0e0"/><circle cx="80" cy="20" r="2" fill="%23e0e0e0"/><circle cx="40" cy="60" r="1.5" fill="%23e0e0e0"/><circle cx="70" cy="70" r="2" fill="%23e0e0e0"/><circle cx="10" cy="80" r="1.5" fill="%23e0e0e0"/></svg>');
+            background-size: 300px;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 10px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        .breadcrumb li:not(:last-child):after {
+            content: '/';
+            margin-left: 10px;
+            color: #999;
+        }
+        
+        .breadcrumb a {
+            color: #4a90e2;
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            padding: 60px 0 80px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #4a90e2;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            position: relative;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .review-product {
+            font-size: 14px;
+            color: #4a90e2;
+            font-weight: 500;
+            background: #f0f7ff;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        
+        .review-date {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .review-content {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .review-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .review-rating i {
+            margin-right: 2px;
+        }
+        
+        .review-footer {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .review-author {
+            font-weight: 500;
+        }
+        
+        .verified-badge {
+            color: #4a90e2;
+            font-size: 12px;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 30px 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 300;
+            color: #4a90e2;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: #4a90e2;
+            color: white;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .cta-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .cta-text {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+        }
+        
+        .cta-btn {
+            background: white;
+            color: #4a90e2;
+        }
+        
+        .cta-btn:hover {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #4a90e2;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #2A2A2A;
+            border-radius: 50%;
+            transition: 0.3s;
+            color: white;
+        }
+        
+        .social-links a:hover {
+            background: #4a90e2;
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 28px;
+            }
+            
+            .page-header p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Artic<span>Plug</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="how-to-buy.html">How to Buy</a></li>
+                        <li><a href="reviews.html" class="active">Reviews</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Customer Reviews</h1>
+            <p>See what our customers around the world are saying about our premium winter puffers and service.</p>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Reviews</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Recommend Us</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Canada Goose Expedition</span>
+                        <span class="review-date">January 15, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-content">"I've owned several winter coats, but nothing compares to the Canada Goose Expedition. I wore it during a trip to Norway in -25°C weather and stayed perfectly warm. The quality is exceptional and worth every penny."</p>
+                    <div class="review-footer">
+                        <span class="review-author">Michael T.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Moose Knuckles 3Q Jacket</span>
+                        <span class="review-date">December 3, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-content">"The Moose Knuckles jacket is both stylish and incredibly warm. The fur trim is genuine and adds a luxurious touch. My only minor complaint is that it's a bit bulky for everyday city wear, but perfect for extreme cold."</p>
+                    <div class="review-footer">
+                        <span class="review-author">Sarah J.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Moncler Maya Puffer</span>
+                        <span class="review-date">February 22, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-content">"I've wanted a Moncler Maya for years and finally treated myself. The fit is perfect - not too bulky but incredibly warm. The attention to detail is remarkable. Shipping was faster than expected too!"</p>
+                    <div class="review-footer">
+                        <span class="review-author">James L.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Canada Goose Langford</span>
+                        <span class="review-date">November 10, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="review-content">"Great coat overall, but I found the sizing runs slightly large. I usually wear medium but should have gone with small. The warmth is exceptional though - perfect for Canadian winters."</p>
+                    <div class="review-footer">
+                        <span class="review-author">Robert K.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Moose Knuckles Stirling</span>
+                        <span class="review-date">January 5, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-content">"The craftsmanship on this jacket is outstanding. The leather details and metal hardware feel premium. It's become my go-to jacket for both style and function during Chicago winters."</p>
+                    <div class="review-footer">
+                        <span class="review-author">Jennifer M.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Moncler Grenoble</span>
+                        <span class="review-date">December 18, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-content">"Bought this for ski trips and it hasn't disappointed. The waterproofing is excellent, and it's breathable enough for active use. A bit pricey but you get what you pay for in terms of quality."</p>
+                    <div class="review-footer">
+                        <span class="review-author">David R.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 7 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Canada Goose Chilliwack</span>
+                        <span class="review-date">February 8, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-content">"This bomber-style jacket is perfect for someone who wants warmth without the bulk of a full parka. The coyote fur ruff is detachable which is great for different weather conditions. Highly recommend!"</p>
+                    <div class="review-footer">
+                        <span class="review-author">Amanda S.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 8 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Moose Knuckles Ballistic</span>
+                        <span class="review-date">November 28, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="review-content">"The jacket is very warm and well-made, but I found the pockets to be smaller than expected. Still, it's my favorite winter coat and I get compliments whenever I wear it."</p>
+                    <div class="review-footer">
+                        <span class="review-author">Thomas B.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+
+                <!-- Review 9 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-product">Moncler Bady</span>
+                        <span class="review-date">January 30, 2023</span>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-content">"I was hesitant about the price, but this jacket is worth every cent. The lightweight design belies how warm it is. Perfect for travel as it packs down surprisingly small."</p>
+                    <div class="review-footer">
+                        <span class="review-author">Olivia P.</span>
+                        <span class="verified-badge">Verified Purchase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Join Our Satisfied Customers</h2>
+            <p class="cta-text">Experience the quality and warmth of our premium winter puffers for yourself.</p>
+            <a href="index.html" class="btn cta-btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ArticPlug</h3>
+                    <p>Your destination for premium winter outerwear from top luxury brands.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="how-to-buy.html">How to Buy</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Canada Goose</a></li>
+                        <li><a href="#">Moose Knuckles</a></li>
+                        <li><a href="#">Moncler</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@articplug.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Winter Avenue, Snow City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ArticPlug. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for stats counting
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                
+                const updateNumber = () => {
+                    if (current < target) {
+                        current += increment;
+                        stat.textContent = Math.ceil(current).toLocaleString();
+                        setTimeout(updateNumber, 30);
+                    } else {
+                        stat.textContent = target.toLocaleString();
+                    }
+                };
+                
+                // Start animation when element is in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateNumber();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(stat);
+            });
+        });
+    </script>
+</body>
+</html>
