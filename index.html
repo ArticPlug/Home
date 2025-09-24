@@ -366,9 +366,126 @@
                 grid-template-columns: 1fr;
             }
         }
+             /* Nuovi stili per le categorie e lo scorrimento immagini */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            background-color: #f5f5f5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        .product-image {
+            height: 300px;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            transition: opacity 0.3s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+        }
+        
+        .product-image img.active {
+            opacity: 1;
+        }
+        
+        .image-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            z-index: 2;
+        }
+        
+        .image-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .image-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .image-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+        }
+        
+        .image-nav.prev {
+            left: 10px;
+        }
+        
+        .image-nav.next {
+            right: 10px;
+        }
+        
+        .product-card:hover .image-nav {
+            opacity: 1;
+        }
+        
+        /* Nascondi prodotti per categoria */
+        .product-card {
+            display: block;
+        }
+        
+        .product-card.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -399,400 +516,463 @@
         </div>
     </section>
 
-  <!-- Products Section -->
-<section class="products">
-    <div class="container">
-        <h2 class="section-title">Featured Products</h2>
-        <div class="product-grid">
-            <!-- Product 1 - Burberry Shorts -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="burberyy shorts.png" class="active">
-                    <img src="burberyy shorts 2.png">
-                    <img src="burberyy shorts 3.png">
-                    <img src="burberyy shorts 4.png">
-                </div>
-                <div class="product-info">
-                    <h3>Burberry Shorts</h3>
-                    <p>Premium quality shorts with iconic Burberry design and comfort.</p>
-                    <div class="price">$245.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 2 - C.P Shell-R Google Jacket -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="C.P Shell-R Google Jacket.png" class="active">
-                    <img src="C.P Shell-R Google Jacket 2.png">
-                    <img src="C.P Shell-R Google Jacket 3.png">
-                </div>
-                <div class="product-info">
-                    <h3>C.P Shell-R Google Jacket</h3>
-                    <p>High-performance jacket with advanced shell technology.</p>
-                    <div class="price">$395.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 3 - Canada Goose -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="canada goose.png" class="active">
-                    <img src="canada goose 2.png">
-                    <img src="canada goose 3.png">
-                    <img src="canada goose 4.png">
-                </div>
-                <div class="product-info">
-                    <h3>Canada Goose Jacket</h3>
-                    <p>Extreme weather protection with premium down insulation.</p>
-                    <div class="price">$1,295.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 4 - Canada Goose Black Vest -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="canada goose black vest.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Canada Goose Black Vest</h3>
-                    <p>Lightweight yet warm vest for versatile layering options.</p>
-                    <div class="price">$695.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 5 - Canada Goose Grey Vest -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="canada goose grey vest.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Canada Goose Grey Vest</h3>
-                    <p>Elegant grey vest with premium insulation technology.</p>
-                    <div class="price">$695.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 6 - CH Glasses -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="CH glasses.png" class="active">
-                    <img src="CH glasses 2.png">
-                    <img src="CH glasses 3.png">
-                </div>
-                <div class="product-info">
-                    <h3>Cartier Glasses</h3>
-                    <p>Luxury eyewear with sophisticated design and UV protection.</p>
-                    <div class="price">$550.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 7 - Crtz Black Shorts -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Crtz Black Shorts.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Corteiz Black Shorts</h3>
-                    <p>Streetwear essential shorts with contemporary design.</p>
-                    <div class="price">$85.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 8 - Crtz Green Velour Tracksuit -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Crtz Green Velour Tracksuit.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Corteiz Green Velour Tracksuit</h3>
-                    <p>Premium velour tracksuit for ultimate comfort and style.</p>
-                    <div class="price">$220.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 9 - Crtz Pink Windbreaker -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Crtz Pink Windbreaker.png" class="active">
-                    <img src="Crtz Pink Windbreaker 2.png">
-                    <img src="Crtz Pink Windbreaker 3.png">
-                    <img src="Crtz Pink Windbreaker 4.png">
-                </div>
-                <div class="product-info">
-                    <h3>Corteiz Pink Windbreaker</h3>
-                    <p>Vibrant pink windbreaker with water-resistant technology.</p>
-                    <div class="price">$150.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 10 - Men's Messenger Bag -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Men's Messenger Bag.png" class="active">
-                    <img src="Men's Messenger Bag 2.png">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Messenger Bag</h3>
-                    <p>Functional and stylish messenger bag for everyday use.</p>
-                    <div class="price">$180.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 11 - Mens Beanie CG -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Beanie CG.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Beanie "CG"</h3>
-                    <p>Warm and comfortable beanie with CG branding.</p>
-                    <div class="price">$45.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 12 - Mens Black Windbreaker -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Black Windbreaker - Mncler.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Black Windbreaker - Moncler</h3>
-                    <p>Sleek black windbreaker with Moncler quality craftsmanship.</p>
-                    <div class="price">$450.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 13 - Mens Bracelet VL -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Bracelet VL.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Bracelet "VL"</h3>
-                    <p>Elegant bracelet with VL branding, perfect for accessorizing.</p>
-                    <div class="price">$79.98</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 14 - Mens Chequered Beanie Black -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Chequered Beanie - Black.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Chequered Beanie - Black</h3>
-                    <p>Classic black chequered beanie for stylish warmth.</p>
-                    <div class="price">$35.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 15 - Mens Chequered Beanie Grey -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Chequered Beanie - Grey.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Chequered Beanie - Grey</h3>
-                    <p>Versatile grey chequered beanie for casual outfits.</p>
-                    <div class="price">$35.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 16 - Mens Detachable Black Gilet -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Detachable Black Gilet - Mncler.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Detachable Black Gilet - Moncler</h3>
-                    <p>Versatile detachable gilet for customizable warmth.</p>
-                    <div class="price">$550.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 17 - Mens Navy Blue Puffer Jacket -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Mens Navy Blue Montbeliard Puffet Jacket - Mncler.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Men's Navy Blue Montbeliard Puffer Jacket - Moncler</h3>
-                    <p>Premium navy blue puffer jacket with superior insulation.</p>
-                    <div class="price">$1,350.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 18 - Moncler -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="moncler.png" class="active">
-                    <img src="moncler 2.png">
-                    <img src="moncler 3.png">
-                    <img src="moncler 4.png">
-                </div>
-                <div class="product-info">
-                    <h3>Moncler Jacket</h3>
-                    <p>Iconic Moncler design with premium goose down filling.</p>
-                    <div class="price">$1,490.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 19 - Moose Knuckles -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="moose.png" class="active">
-                    <img src="moose 2.png">
-                    <img src="moose 3.png">
-                </div>
-                <div class="product-info">
-                    <h3>Moose Knuckles Jacket</h3>
-                    <p>Luxurious Canadian craftsmanship with signature hardware.</p>
-                    <div class="price">$1,150.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 20 - NK Tech Fleece Dark Blue -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="NK Tech Fleece - Dark Blue.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Nike Tech Fleece - Dark Blue</h3>
-                    <p>Comfortable tech fleece in dark blue for active lifestyle.</p>
-                    <div class="price">$120.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 21 - NK Tech Fleece Syna World -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="NK Tech Fleece New SZN - SynaWrld.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Nike Tech Fleece New Season - Syna World</h3>
-                    <p>Latest season tech fleece with Syna World collaboration.</p>
-                    <div class="price">$140.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 22 - NK Tech Fleece Black -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="NK Tech Fleece New SZN- Black.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Nike Tech Fleece New Season - Black</h3>
-                    <p>Black tech fleece from the latest collection.</p>
-                    <div class="price">$140.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 23 - Polo RL Tracksuit Black -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="polo rl tracksuit black.png" class="active">
-                    <img src="polo rl tracksuit black 2.png">
-                    <img src="polo rl tracksuit black 3.png">
-                </div>
-                <div class="product-info">
-                    <h3>Polo Ralph Lauren Tracksuit - Black</h3>
-                    <p>Classic black tracksuit with iconic Polo Ralph Lauren design.</p>
-                    <div class="price">$280.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 24 - Polo RL Tracksuit Grey -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="polo rl tracksuit grey.png" class="active">
-                    <img src="polo rl tracksuit grey 2.png">
-                    <img src="polo rl tracksuit grey 3.png">
-                </div>
-                <div class="product-info">
-                    <h3>Polo Ralph Lauren Tracksuit - Grey</h3>
-                    <p>Elegant grey tracksuit for sophisticated casual wear.</p>
-                    <div class="price">$280.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 25 - Syna World Set -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Syna Wrld set - GreyPink.png" class="active">
-                </div>
-                <div class="product-info">
-                    <h3>Syna World Set - Grey Pink</h3>
-                    <p>Stylish grey and pink coordinated set from Syna World.</p>
-                    <div class="price">$160.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-            
-            <!-- Product 26 - Trpstr Puffer Jacket -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="Trpstr Shiny Black Irongate Hooded Puffer Jacket.png" class="active">
-                    <img src="Trpstr Shiny Black Irongate Hooded Puffer Jacket 2.png">
-                    <img src="Trpstr Shiny Black Irongate Hooded Puffer Jacket 3.png">
-                </div>
-                <div class="product-info">
-                    <h3>Trpstr Shiny Black Irongate Hooded Puffer Jacket</h3>
-                    <p>Shiny black puffer jacket with hood and irongate design.</p>
-                    <div class="price">$320.00</div>
-                    <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Products Section -->
+    <section class="products">
         <div class="container">
-            <h2 class="section-title">Why Choose ArticPlug</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">❄️</div>
-                    <h3>Extreme Warmth</h3>
-                    <p>Our puffers are designed to withstand the harshest winter conditions with premium insulation.</p>
+            <h2 class="section-title">Featured Products</h2>
+            
+            <!-- Filtri per categoria -->
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All Products</button>
+                <button class="category-btn" data-category="puffer">Puffer Jackets</button>
+                <button class="category-btn" data-category="beanie">Beanies</button>
+                <button class="category-btn" data-category="shorts">Shorts</button>
+                <button class="category-btn" data-category="tracksuit">Tracksuits</button>
+                <button class="category-btn" data-category="accessories">Accessories</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 - Burberry Shorts -->
+                <div class="product-card" data-category="shorts">
+                    <div class="product-image">
+                        <img src="burberyy shorts.png" class="active">
+                        <img src="burberyy shorts 2.png">
+                        <img src="burberyy shorts 3.png">
+                        <img src="burberyy shorts 4.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                            <div class="image-dot" data-index="3"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Burberry Shorts</h3>
+                        <p>Premium quality shorts with iconic Burberry design and comfort.</p>
+                        <div class="price">$245.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">✨</div>
-                    <h3>Premium Quality</h3>
-                    <p>Only the finest materials and craftsmanship go into every ArticPlug product.</p>
+                
+                <!-- Product 2 - C.P Shell-R Google Jacket -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="C.P Shell-R Google Jacket.png" class="active">
+                        <img src="C.P Shell-R Google Jacket 2.png">
+                        <img src="C.P Shell-R Google Jacket 3.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>C.P Shell-R Google Jacket</h3>
+                        <p>High-performance jacket with advanced shell technology.</p>
+                        <div class="price">$395.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🚚</div>
-                    <h3>Fast Shipping</h3>
-                    <p>Free express shipping on all orders over $500. Receive your order in 2-3 business days.</p>
+                
+                <!-- Product 3 - Canada Goose -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="canada goose.png" class="active">
+                        <img src="canada goose 2.png">
+                        <img src="canada goose 3.png">
+                        <img src="canada goose 4.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                            <div class="image-dot" data-index="3"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Canada Goose Jacket</h3>
+                        <p>Extreme weather protection with premium down insulation.</p>
+                        <div class="price">$1,295.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">💳</div>
-                    <h3>Secure Payment</h3>
-                    <p>Shop with confidence using our encrypted payment system protecting your information.</p>
+                
+                <!-- Product 4 - Canada Goose Black Vest -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="canada goose black vest.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Canada Goose Black Vest</h3>
+                        <p>Lightweight yet warm vest for versatile layering options.</p>
+                        <div class="price">$695.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 5 - Canada Goose Grey Vest -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="canada goose grey vest.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Canada Goose Grey Vest</h3>
+                        <p>Elegant grey vest with premium insulation technology.</p>
+                        <div class="price">$695.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 6 - CH Glasses -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image">
+                        <img src="CH glasses.png" class="active">
+                        <img src="CH glasses 2.png">
+                        <img src="CH glasses 3.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cartier Glasses</h3>
+                        <p>Luxury eyewear with sophisticated design and UV protection.</p>
+                        <div class="price">$550.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 7 - Crtz Black Shorts -->
+                <div class="product-card" data-category="shorts">
+                    <div class="product-image">
+                        <img src="Crtz Black Shorts.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Corteiz Black Shorts</h3>
+                        <p>Streetwear essential shorts with contemporary design.</p>
+                        <div class="price">$85.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 8 - Crtz Green Velour Tracksuit -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="Crtz Green Velour Tracksuit.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Corteiz Green Velour Tracksuit</h3>
+                        <p>Premium velour tracksuit for ultimate comfort and style.</p>
+                        <div class="price">$220.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 9 - Crtz Pink Windbreaker -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="Crtz Pink Windbreaker.png" class="active">
+                        <img src="Crtz Pink Windbreaker 2.png">
+                        <img src="Crtz Pink Windbreaker 3.png">
+                        <img src="Crtz Pink Windbreaker 4.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                            <div class="image-dot" data-index="3"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Corteiz Pink Windbreaker</h3>
+                        <p>Vibrant pink windbreaker with water-resistant technology.</p>
+                        <div class="price">$150.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 10 - Men's Messenger Bag -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image">
+                        <img src="Men's Messenger Bag.png" class="active">
+                        <img src="Men's Messenger Bag 2.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Messenger Bag</h3>
+                        <p>Functional and stylish messenger bag for everyday use.</p>
+                        <div class="price">$180.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 11 - Mens Beanie CG -->
+                <div class="product-card" data-category="beanie">
+                    <div class="product-image">
+                        <img src="Mens Beanie CG.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Beanie "CG"</h3>
+                        <p>Warm and comfortable beanie with CG branding.</p>
+                        <div class="price">$45.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 12 - Mens Black Windbreaker -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="Mens Black Windbreaker - Mncler.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Black Windbreaker - Moncler</h3>
+                        <p>Sleek black windbreaker with Moncler quality craftsmanship.</p>
+                        <div class="price">$450.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 13 - Mens Bracelet VL -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image">
+                        <img src="Mens Bracelet VL.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Bracelet "VL"</h3>
+                        <p>Elegant bracelet with VL branding, perfect for accessorizing.</p>
+                        <div class="price">$79.98</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 14 - Mens Chequered Beanie Black -->
+                <div class="product-card" data-category="beanie">
+                    <div class="product-image">
+                        <img src="Mens Chequered Beanie - Black.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Chequered Beanie - Black</h3>
+                        <p>Classic black chequered beanie for stylish warmth.</p>
+                        <div class="price">$35.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 15 - Mens Chequered Beanie Grey -->
+                <div class="product-card" data-category="beanie">
+                    <div class="product-image">
+                        <img src="Mens Chequered Beanie - Grey.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Chequered Beanie - Grey</h3>
+                        <p>Versatile grey chequered beanie for casual outfits.</p>
+                        <div class="price">$35.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 16 - Mens Detachable Black Gilet -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="Mens Detachable Black Gilet - Mncler.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Detachable Black Gilet - Moncler</h3>
+                        <p>Versatile detachable gilet for customizable warmth.</p>
+                        <div class="price">$550.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 17 - Mens Navy Blue Puffer Jacket -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="Mens Navy Blue Montbeliard Puffet Jacket - Mncler.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Navy Blue Montbeliard Puffer Jacket - Moncler</h3>
+                        <p>Premium navy blue puffer jacket with superior insulation.</p>
+                        <div class="price">$1,350.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 18 - Moncler -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="moncler.png" class="active">
+                        <img src="moncler 2.png">
+                        <img src="moncler 3.png">
+                        <img src="moncler 4.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                            <div class="image-dot" data-index="3"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Moncler Jacket</h3>
+                        <p>Iconic Moncler design with premium goose down filling.</p>
+                        <div class="price">$1,490.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 19 - Moose Knuckles -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="moose.png" class="active">
+                        <img src="moose 2.png">
+                        <img src="moose 3.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Moose Knuckles Jacket</h3>
+                        <p>Luxurious Canadian craftsmanship with signature hardware.</p>
+                        <div class="price">$1,150.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 20 - NK Tech Fleece Dark Blue -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="NK Tech Fleece - Dark Blue.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Nike Tech Fleece - Dark Blue</h3>
+                        <p>Comfortable tech fleece in dark blue for active lifestyle.</p>
+                        <div class="price">$120.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 21 - NK Tech Fleece Syna World -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="NK Tech Fleece New SZN - SynaWrld.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Nike Tech Fleece New Season - Syna World</h3>
+                        <p>Latest season tech fleece with Syna World collaboration.</p>
+                        <div class="price">$140.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 22 - NK Tech Fleece Black -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="NK Tech Fleece New SZN- Black.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Nike Tech Fleece New Season - Black</h3>
+                        <p>Black tech fleece from the latest collection.</p>
+                        <div class="price">$140.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 23 - Polo RL Tracksuit Black -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="polo rl tracksuit black.png" class="active">
+                        <img src="polo rl tracksuit black 2.png">
+                        <img src="polo rl tracksuit black 3.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Polo Ralph Lauren Tracksuit - Black</h3>
+                        <p>Classic black tracksuit with iconic Polo Ralph Lauren design.</p>
+                        <div class="price">$280.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 24 - Polo RL Tracksuit Grey -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="polo rl tracksuit grey.png" class="active">
+                        <img src="polo rl tracksuit grey 2.png">
+                        <img src="polo rl tracksuit grey 3.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Polo Ralph Lauren Tracksuit - Grey</h3>
+                        <p>Elegant grey tracksuit for sophisticated casual wear.</p>
+                        <div class="price">$280.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 25 - Syna World Set -->
+                <div class="product-card" data-category="tracksuit">
+                    <div class="product-image">
+                        <img src="Syna Wrld set - GreyPink.png" class="active">
+                    </div>
+                    <div class="product-info">
+                        <h3>Syna World Set - Grey Pink</h3>
+                        <p>Stylish grey and pink coordinated set from Syna World.</p>
+                        <div class="price">$160.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 26 - Trpstr Puffer Jacket -->
+                <div class="product-card" data-category="puffer">
+                    <div class="product-image">
+                        <img src="Trpstr Shiny Black Irongate Hooded Puffer Jacket.png" class="active">
+                        <img src="Trpstr Shiny Black Irongate Hooded Puffer Jacket 2.png">
+                        <img src="Trpstr Shiny Black Irongate Hooded Puffer Jacket 3.png">
+                        <div class="image-controls">
+                            <div class="image-dot active" data-index="0"></div>
+                            <div class="image-dot" data-index="1"></div>
+                            <div class="image-dot" data-index="2"></div>
+                        </div>
+                        <button class="image-nav prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="image-nav next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Trpstr Shiny Black Irongate Hooded Puffer Jacket</h3>
+                        <p>Shiny black puffer jacket with hood and irongate design.</p>
+                        <div class="price">$320.00</div>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Add to Cart</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -844,5 +1024,100 @@
             </div>
         </div>
     </footer>
+       <script>
+        // Funzione per lo scorrimento immagini
+        function initImageSliders() {
+            document.querySelectorAll('.product-image').forEach(imageContainer => {
+                const images = imageContainer.querySelectorAll('img');
+                const dots = imageContainer.querySelectorAll('.image-dot');
+                const prevBtn = imageContainer.querySelector('.image-nav.prev');
+                const nextBtn = imageContainer.querySelector('.image-nav.next');
+                
+                // Se c'è solo un'immagine, nascondi i controlli
+                if (images.length <= 1) {
+                    if (imageContainer.querySelector('.image-controls')) {
+                        imageContainer.querySelector('.image-controls').style.display = 'none';
+                    }
+                    if (prevBtn) prevBtn.style.display = 'none';
+                    if (nextBtn) nextBtn.style.display = 'none';
+                    return;
+                }
+                
+                let currentIndex = 0;
+                
+                // Funzione per mostrare l'immagine specifica
+                function showImage(index) {
+                    // Nascondi tutte le immagini
+                    images.forEach(img => img.classList.remove('active'));
+                    // Mostra l'immagine selezionata
+                    images[index].classList.add('active');
+                    
+                    // Aggiorna i dots
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                    
+                    currentIndex = index;
+                }
+                
+                // Aggiungi event listener ai dots
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        showImage(index);
+                    });
+                });
+                
+                // Aggiungi event listener ai pulsanti di navigazione
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        let newIndex = currentIndex - 1;
+                        if (newIndex < 0) newIndex = images.length - 1;
+                        showImage(newIndex);
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        let newIndex = currentIndex + 1;
+                        if (newIndex >= images.length) newIndex = 0;
+                        showImage(newIndex);
+                    });
+                }
+            });
+        }
+        
+        // Funzione per i filtri delle categorie
+        function initCategoryFilters() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Rimuovi la classe active da tutti i pulsanti
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // Aggiungi la classe active al pulsante cliccato
+                    btn.classList.add('active');
+                    
+                    const category = btn.getAttribute('data-category');
+                    
+                    // Filtra i prodotti
+                    productCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Inizializza le funzionalità quando il DOM è caricato
+        document.addEventListener('DOMContentLoaded', () => {
+            initImageSliders();
+            initCategoryFilters();
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
