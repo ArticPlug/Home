@@ -545,51 +545,66 @@
     </section>
 
     <!-- Payment Methods -->
-    <section class="payment-section">
-        <div class="container">
-            <h2 class="section-title">Available Payment Methods</h2>
-            <div class="payment-grid">
-                <div class="payment-card">
-                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
-                    <h3>PayPal</h3>
-                    <p>Fast, secure, and widely accepted. We accept both PayPal balance and credit card payments.</p>
-                    <ol>
-                        <li>Log in to PayPal.</li>
-                        <li>Select Send Money → Friends & Family.</li>
-                        <li>Enter our PayPal email + the exact amount.</li>
-                        <li>In the message/note field, write: What you’re buying, Your email, Full shipping address (Country, ZIP, Street, City)</li>
-                        <li>Confirm and send.</li>
-                    </ol>
-                    <button class="payment-btn">Pay with PayPal</button>
-                </div>
-                <div class="payment-card">
-                    <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
-                    <h3>Crypto</h3>
-                    <p>Secure payment processing with encryption for your peace of mind.</p>
-                    <ol>
-                        <li>Enter your card details at checkout</li>
-                        <li>Provide billing information</li>
-                        <li>Complete 3D Secure verification if required</li>
-                        <li>Receive instant payment confirmation</li>
-                    </ol>
-                    <button class="payment-btn">Pay with Crypto</button>
-                </div>
-                <div class="payment-card">
-                    <div class="payment-icon"><i class="fas fa-university"></i></div>
-                    <h3>Bank Transfer</h3>
-                    <p>Direct bank transfer for those who prefer traditional payment methods.</p>
-                    <ol>
-                        <li>Select bank transfer at checkout</li>
-                        <li>We'll provide our banking details</li>
-                        <li>Complete the transfer from your bank</li>
-                        <li>Send us the payment confirmation</li>
-                        <li>We'll ship your order once payment clears</li>
-                    </ol>
-                    <button class="payment-btn">Pay by Bank Transfer</button>
-                </div>
+  <section class="payment-section">
+    <div class="container">
+        <h2 class="section-title">Available Payment Methods</h2>
+        <div class="payment-grid">
+
+            <!-- PayPal -->
+            <div class="payment-card">
+                <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
+                <h3>PayPal (Friends & Family)</h3>
+                <p>Send payment via PayPal Friends & Family. Add your order details in the note.</p>
+                <ol>
+                    <li>Log in to PayPal</li>
+                    <li>Select <strong>Send Money → Friends & Family</strong></li>
+                    <li>Enter our PayPal email + exact amount</li>
+                    <li>In the <strong>note field</strong>, include:<br>
+                        - What you’re buying<br>
+                        - Your email<br>
+                        - Full address (Country, ZIP, Street, City)</li>
+                    <li>Confirm and send</li>
+                </ol>
+                <a href="YOUR_PAYPAL_LINK" target="_blank" class="payment-btn">Pay with PayPal</a>
             </div>
+
+            <!-- Bitcoin -->
+            <div class="payment-card">
+                <div class="payment-icon"><i class="fab fa-bitcoin"></i></div>
+                <h3>Bitcoin (BTC)</h3>
+                <p>Send BTC directly to our wallet. Add your order details in the transaction note.</p>
+                <ol>
+                    <li>Copy our <strong>BTC wallet address</strong></li>
+                    <li>From your wallet/exchange, send exact BTC amount</li>
+                    <li>In the <strong>transaction note/memo</strong>, include:<br>
+                        - What you’re buying<br>
+                        - Your email<br>
+                        - Full address (Country, ZIP, Street, City)</li>
+                    <li>Confirm send & keep TXID</li>
+                </ol>
+                <a href="YOUR_BTC_PAYMENT_LINK" target="_blank" class="payment-btn">Pay with Bitcoin</a>
+            </div>
+
+            <!-- Bank Transfer -->
+            <div class="payment-card">
+                <div class="payment-icon"><i class="fas fa-university"></i></div>
+                <h3>Bank Transfer (IBAN)</h3>
+                <p>Wire money directly to our IBAN. Add your order details in the transfer reference.</p>
+                <ol>
+                    <li>Copy our <strong>IBAN & bank details</strong></li>
+                    <li>Send wire/SEPA transfer for exact amount</li>
+                    <li>In the <strong>reference/message</strong>, include:<br>
+                        - What you’re buying<br>
+                        - Your email<br>
+                        - Full address (Country, ZIP, Street, City)</li>
+                    <li>Confirm transfer & save receipt</li>
+                </ol>
+                <a href="YOUR_BANK_INFO_PAGE" target="_blank" class="payment-btn">Pay by Bank Transfer</a>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- CTA Section -->
     <section class="cta-section">
